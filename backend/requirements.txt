@@ -1,0 +1,35 @@
+# ─── Core API ──────────────────────────────────────────────────────────
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+pydantic>=2.7
+pydantic-settings>=2.5
+
+# ─── Image / video processing ──────────────────────────────────────────
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24
+
+# ─── Deep learning (lazy-loaded; only needed for real inference) ───────
+# Comment these out if you only want Demo Mode and want to avoid the
+# heavy ~2 GB PyTorch install. The API auto-detects torch and falls back
+# to DemoPredictor when it's missing.
+torch>=2.1
+torchvision>=0.16
+
+# ─── Optional: high-quality face detection ─────────────────────────────
+# Preferred:  MTCNN via facenet-pytorch (pure PyTorch, no dlib build).
+#             This matches the trainer's preprocessing — recommended.
+# Fallback:   face_recognition (dlib) — accurate but slow to install.
+# Final:      OpenCV's bundled Haar cascade — always available, no extra dep.
+# Uncomment whichever you want to install:
+# facenet-pytorch>=2.5
+# face-recognition>=1.3.0
+
+# ─── Optional: HuggingFace pretrained deepfake detector ────────────────
+# Set DEEPFAKE_USE_PRETRAINED_HF=1 to use a pretrained ViT classifier
+# (default: prithivMLmods/Deep-Fake-Detector-Model). Works on arbitrary
+# in-the-wild videos, unlike the small SDFVD-trained checkpoint.
+# First request downloads ~300 MB into backend/.hf_cache/.
+transformers>=4.40
+safetensors>=0.4

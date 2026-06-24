@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+processed_faces/
+checkpoints/
+eval_results/
+*.pt
+*.pth

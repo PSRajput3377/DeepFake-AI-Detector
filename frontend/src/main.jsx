@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
-createRoot(document.getElementById('root')).render(
+import App from "./App.jsx";
+import { ThemeProvider } from "./lib/theme.jsx";
+import Toaster from "./components/Toaster.jsx";
+import "./index.css";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <BrowserRouter
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
+      <ThemeProvider>
+        <Toaster>
+          <App />
+        </Toaster>
+      </ThemeProvider>
+    </BrowserRouter>
   </StrictMode>,
-)
+);

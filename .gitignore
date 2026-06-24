@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+
+# Editors
+.idea/
+.vscode/
+.DS_Store
+
+# Project artifacts
+model_training/processed_faces/
+model_training/checkpoints/
+model_training/eval_results/
+model_training/.torch_cache/
+backend/.torch_cache/
+backend/.hf_cache/
+backend/media/
+backend/staticfiles/
+backend/models/*.pt
+backend/models/*.pth
+
+# Env
+*.env
+.env

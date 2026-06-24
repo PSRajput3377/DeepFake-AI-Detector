@@ -1,16 +1,50 @@
-# React + Vite
+# DeepFake AI Detector — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React SPA for the DeepFake AI Detector. Built with **Vite 8 + React 19**,
+**Tailwind CSS**, **Framer Motion**, **Recharts** and **react-router-dom**.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev          # http://localhost:5173
+```
 
-## React Compiler
+The dev server proxies `/api` and `/media` to `http://127.0.0.1:8000`, so make
+sure the FastAPI backend is running too (see the top-level README).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Scripts
 
-## Expanding the ESLint configuration
+| Script            | What it does                                |
+| ----------------- | ------------------------------------------- |
+| `npm run dev`     | Start the Vite dev server with HMR          |
+| `npm run build`   | Produce a production build in `dist/`       |
+| `npm run preview` | Preview the production build locally        |
+| `npm run lint`    | ESLint over `src/` (errors fail the script) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pointing at a different backend
+
+For a deployed setup, set `VITE_API_BASE_URL` at build/dev time:
+
+```bash
+VITE_API_BASE_URL="https://api.example.com" npm run build
+```
+
+The axios client in `src/lib/api.js` will prefix all requests with that URL.
+
+## Project layout
+
+```
+src/
+├─ components/           UI primitives
+├─ pages/                Route components (Home, Detector, About, NotFound)
+├─ lib/                  api client, theme provider, PDF report generator
+├─ App.jsx               Route table + AnimatePresence
+├─ main.jsx              ReactDOM root + providers
+└─ index.css             Tailwind base + glass / btn-primary utilities
+```
+
+## Theming
+
+The site is dark by default but fully themed in `light` mode too. The toggle
+lives in the navbar and persists to `localStorage` under `deepfake-theme`.

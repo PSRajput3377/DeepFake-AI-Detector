@@ -1,3 +1,114 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply font-sans antialiased text-slate-800 bg-slate-50;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+
+  html.dark body {
+    @apply text-slate-100 bg-[#070b1a];
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(49, 155, 255, 0.35);
+    color: white;
+  }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+  }
+  html.dark ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.25);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.55);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-white/[0.04] backdrop-blur-2xl
+           border border-slate-200/70 dark:border-white/10
+           shadow-[0_30px_80px_-30px_rgba(15,23,42,0.25)] dark:shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl
+           px-4 py-2.5 text-sm font-semibold
+           transition-all duration-200 select-none
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn text-white
+           bg-gradient-to-r from-brand-500 via-brand-600 to-accent-600
+           shadow-[0_10px_30px_-10px_rgba(49,155,255,0.6)]
+           hover:shadow-[0_18px_40px_-10px_rgba(124,58,237,0.55)]
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-700 dark:text-slate-200
+           bg-slate-100/80 hover:bg-slate-200/80
+           dark:bg-white/5 dark:hover:bg-white/10;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full
+           text-[11px] font-semibold uppercase tracking-wider;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  html.dark .grid-bg {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.045) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent
+           bg-gradient-to-r from-brand-400 via-brand-300 to-accent-400;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+  }
+}
